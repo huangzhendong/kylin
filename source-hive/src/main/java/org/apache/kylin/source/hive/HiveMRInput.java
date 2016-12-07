@@ -61,8 +61,10 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Sets;
 
+/**
+ * Hive作为数据源
+ */
 public class HiveMRInput implements IMRInput {
-
 
     @Override
     public IMRBatchCubingInputSide getBatchCubingInputSide(IJoinedFlatTableDesc flatDesc) {

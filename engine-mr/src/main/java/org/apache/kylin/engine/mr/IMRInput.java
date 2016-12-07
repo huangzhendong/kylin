@@ -30,7 +30,7 @@ import org.apache.kylin.metadata.model.TableDesc;
  */
 public interface IMRInput {
 
-    /** Return a helper to participate in batch cubing job flow. 获取数据块，以支持数据流*/
+    /** Return a helper to participate in batch cubing job flow. 获取cube job构建流的协助类*/
     public IMRBatchCubingInputSide getBatchCubingInputSide(IJoinedFlatTableDesc flatDesc);
 
     /** Return an InputFormat that reads from specified table. 读取特定表InputFormat*/
@@ -63,10 +63,10 @@ public interface IMRInput {
      */
     public interface IMRBatchCubingInputSide {
 
-        /** Return an InputFormat that reads from the intermediate flat table 中间宽表对应的InputFormat*/
+        /** Return an InputFormat that reads from the intermediate flat table. 中间宽表对应的InputFormat*/
         public IMRTableInputFormat getFlatTableInputFormat();
 
-        /** Add step that creates an intermediate flat table as defined by CubeJoinedFlatTableDesc 创建一张列按降序排列的FlatTable*/
+        /** Add step that creates an intermediate flat table as defined by CubeJoinedFlatTableDesc. 创建一张列按降序排列的FlatTable*/
         public void addStepPhase1_CreateFlatTable(DefaultChainedExecutable jobFlow);
 
         /** Add step that does necessary clean up, like delete the intermediate flat table */
@@ -74,9 +74,7 @@ public interface IMRInput {
     }
 
     public interface IMRBatchMergeInputSide {
-
-        /** Add step that executes before merge dictionary and before merge cube. 在merge dic 和 cube之前要做的步骤*/
+        /** Add step that executes before merge dictionary and before merge cube. 在merge dic 和 merge cube之前要做的步骤*/
         public void addStepPhase1_MergeDictionary(DefaultChainedExecutable jobFlow);
-
     }
 }

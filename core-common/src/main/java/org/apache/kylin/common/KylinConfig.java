@@ -44,7 +44,6 @@ public class KylinConfig extends KylinConfigBase {
     private static final long serialVersionUID = 1L;
     private static final Logger logger = LoggerFactory.getLogger(KylinConfig.class);
 
-
     /** Kylin properties file name */
     public static final String KYLIN_CONF_PROPERTIES_FILE = "kylin.properties";
     public static final String KYLIN_CONF = "KYLIN_CONF";

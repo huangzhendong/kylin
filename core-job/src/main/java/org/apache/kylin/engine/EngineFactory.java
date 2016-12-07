@@ -28,6 +28,9 @@ import org.apache.kylin.job.execution.DefaultChainedExecutable;
 import org.apache.kylin.metadata.model.IEngineAware;
 import org.apache.kylin.metadata.model.IJoinedFlatTableDesc;
 
+/**
+ * 引擎工厂
+ */
 public class EngineFactory {
 
     private static ImplementationSwitch<IBatchCubingEngine> batchEngines;
@@ -45,17 +48,24 @@ public class EngineFactory {
     public static IJoinedFlatTableDesc getJoinedFlatTableDesc(CubeDesc cubeDesc) {
         return batchEngine(cubeDesc).getJoinedFlatTableDesc(cubeDesc);
     }
-    
+
+    /**获取Join之后Flat表的描述*/
     public static IJoinedFlatTableDesc getJoinedFlatTableDesc(CubeSegment newSegment) {
         return batchEngine(newSegment).getJoinedFlatTableDesc(newSegment);
     }
     
-    /** Build a new cube segment, typically its time range appends to the end of current cube. */
+    /**
+     * Build a new cube segment, typically its time range appends to the end of current cube.
+     * 创建一个默认的Cube构建job
+     * */
     public static DefaultChainedExecutable createBatchCubingJob(CubeSegment newSegment, String submitter) {
         return batchEngine(newSegment).createBatchCubingJob(newSegment, submitter);
     }
 
-    /** Merge multiple small segments into a big one. */
+    /**
+     * Merge multiple small segments into a big one.
+     * 合并cube segment
+     * */
     public static DefaultChainedExecutable createBatchMergeJob(CubeSegment mergeSegment, String submitter) {
         return batchEngine(mergeSegment).createBatchMergeJob(mergeSegment, submitter);
     }
