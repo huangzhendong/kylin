@@ -58,6 +58,9 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Sets;
 
+/**
+ * Hive作为数据源
+ */
 public class HiveMRInput implements IMRInput {
 
     public static String getTableNameForHCat(TableDesc table, boolean isFullTable) {

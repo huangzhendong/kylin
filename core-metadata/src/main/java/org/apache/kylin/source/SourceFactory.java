@@ -29,6 +29,8 @@ import org.apache.kylin.metadata.model.TableDesc;
 public class SourceFactory {
 
     private static ImplementationSwitch<ISource> sources;
+
+    /**只在类加载的时候初始化一次*/
     static {
         Map<Integer, String> impls = KylinConfig.getInstanceFromEnv().getSourceEngines();
         sources = new ImplementationSwitch<>(impls, ISource.class);
